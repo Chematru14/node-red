@@ -8,7 +8,47 @@
         "env": []
     },
     {
-        "id": "d7de813f85e4baec",
+        "id": "2020cdf50418a6b9",
+        "type": "MySQLdatabase",
+        "name": "",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "grupounoiot",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "866927ccc66b0b61",
+        "type": "debug",
+        "z": "b3c1cc0c4de56cd8",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "0ef90eb924eaeb6a",
+        "type": "mysql",
+        "z": "b3c1cc0c4de56cd8",
+        "mydb": "2020cdf50418a6b9",
+        "name": "registrosensor",
+        "x": 300,
+        "y": 160,
+        "wires": [
+            [
+                "866927ccc66b0b61"
+            ]
+        ]
+    },
+    {
+        "id": "7da7ccca53f7f156",
         "type": "inject",
         "z": "b3c1cc0c4de56cd8",
         "name": "",
@@ -25,31 +65,44 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "topic": "",
+        "topic": "CREATE TABLE `registrosensor` (`id` INT NOT NULL AUTO_INCREMENT, `temperatura` FLOAT NOT NULL, `humedad` FLOAT NOT NULL, `fecha` TIMESTAMP NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB",
         "payload": "",
         "payloadType": "date",
-        "x": 60,
-        "y": 140,
+        "x": 100,
+        "y": 120,
         "wires": [
             [
-                "866927ccc66b0b61"
+                "0ef90eb924eaeb6a"
             ]
         ]
     },
     {
-        "id": "866927ccc66b0b61",
-        "type": "debug",
+        "id": "dc99cfb16b8648b5",
+        "type": "inject",
         "z": "b3c1cc0c4de56cd8",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 220,
-        "y": 140,
-        "wires": []
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "show tables",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 240,
+        "wires": [
+            [
+                "0ef90eb924eaeb6a"
+            ]
+        ]
     }
 ]
