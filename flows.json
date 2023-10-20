@@ -8,7 +8,20 @@
         "env": []
     },
     {
-        "id": "2020cdf50418a6b9",
+        "id": "a5f1e2921c16c7cd",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "81a30fdf93ecbe1b",
+        "type": "firebase admin",
+        "name": "basedatarealtime"
+    },
+    {
+        "id": "f0acfe16583c9c27",
         "type": "MySQLdatabase",
         "name": "",
         "host": "127.0.0.1",
@@ -30,7 +43,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 460,
+        "x": 740,
         "y": 160,
         "wires": []
     },
@@ -38,9 +51,9 @@
         "id": "0ef90eb924eaeb6a",
         "type": "mysql",
         "z": "b3c1cc0c4de56cd8",
-        "mydb": "2020cdf50418a6b9",
+        "mydb": "f0acfe16583c9c27",
         "name": "registrosensor",
-        "x": 300,
+        "x": 560,
         "y": 160,
         "wires": [
             [
@@ -69,7 +82,7 @@
         "topic": "",
         "payload": "{\"temperatura\":23,\"humedad\":86}",
         "payloadType": "json",
-        "x": 90,
+        "x": 130,
         "y": 160,
         "wires": [
             [
@@ -89,12 +102,161 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 200,
-        "y": 260,
+        "x": 340,
+        "y": 160,
         "wires": [
             [
                 "0ef90eb924eaeb6a"
             ]
         ]
+    },
+    {
+        "id": "e9d86dba0df32519",
+        "type": "inject",
+        "z": "b3c1cc0c4de56cd8",
+        "name": "Mostrar tabla",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "Select * from registrosensor",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 240,
+        "wires": [
+            [
+                "0ef90eb924eaeb6a"
+            ]
+        ]
+    },
+    {
+        "id": "15aa950c6b90c8fa",
+        "type": "inject",
+        "z": "b3c1cc0c4de56cd8",
+        "name": "Actualizar registro",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "update registrosensor set temperatura=50 where id=1;",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 320,
+        "wires": [
+            [
+                "0ef90eb924eaeb6a"
+            ]
+        ]
+    },
+    {
+        "id": "68dbe4cab1f21303",
+        "type": "inject",
+        "z": "b3c1cc0c4de56cd8",
+        "name": "Borrar registro",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "delete from registrosensor where id > 3;",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 400,
+        "wires": [
+            [
+                "0ef90eb924eaeb6a"
+            ]
+        ]
+    },
+    {
+        "id": "56413e0eff0efdac",
+        "type": "firebase realtime database out",
+        "z": "a5f1e2921c16c7cd",
+        "name": "firebase",
+        "ref": "registrosensor",
+        "operation": "set",
+        "admin": "81a30fdf93ecbe1b",
+        "x": 260,
+        "y": 380,
+        "wires": [
+            [
+                "392c2626102e4cb1"
+            ]
+        ]
+    },
+    {
+        "id": "a11f925a6fd96c88",
+        "type": "inject",
+        "z": "a5f1e2921c16c7cd",
+        "name": "Simulador Json",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"temperatura\":24,\"humedad\":91}",
+        "payloadType": "json",
+        "x": 100,
+        "y": 380,
+        "wires": [
+            [
+                "56413e0eff0efdac"
+            ]
+        ]
+    },
+    {
+        "id": "392c2626102e4cb1",
+        "type": "debug",
+        "z": "a5f1e2921c16c7cd",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 380,
+        "wires": []
     }
 ]
