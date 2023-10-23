@@ -16,6 +16,14 @@
         "env": []
     },
     {
+        "id": "d327d469936224b5",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "81a30fdf93ecbe1b",
         "type": "firebase admin",
         "name": "basedatarealtime"
@@ -29,6 +37,155 @@
         "db": "grupounoiot",
         "tz": "",
         "charset": "UTF8"
+    },
+    {
+        "id": "f4395ba018716cfa",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "919fb5fec90d1610",
+        "type": "ui_spacer",
+        "z": "d327d469936224b5",
+        "name": "spacer",
+        "group": "11f101f3c79523d6",
+        "order": 1,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "2720416019ec0135",
+        "type": "ui_tab",
+        "name": "Pincipal",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "8595fad86834097e",
+        "type": "ui_group",
+        "name": "Sensores on/off",
+        "tab": "2720416019ec0135",
+        "order": 1,
+        "disp": true,
+        "width": "3",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "6460dece15e7e3e1",
+        "type": "ui_group",
+        "name": "EstadoSensores",
+        "tab": "2720416019ec0135",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "fe4d0132a6be9fa3",
+        "type": "ui_group",
+        "name": "GaugeSensores",
+        "tab": "2720416019ec0135",
+        "order": 3,
+        "disp": true,
+        "width": "3",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "866927ccc66b0b61",
@@ -205,7 +362,7 @@
         "ref": "registrosensor",
         "operation": "set",
         "admin": "81a30fdf93ecbe1b",
-        "x": 260,
+        "x": 180,
         "y": 380,
         "wires": [
             [
@@ -232,10 +389,10 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "{\"temperatura\":24,\"humedad\":91}",
+        "payload": "{\"temperatura\":25,\"humedad\":81}",
         "payloadType": "json",
         "x": 100,
-        "y": 380,
+        "y": 200,
         "wires": [
             [
                 "56413e0eff0efdac"
@@ -258,5 +415,229 @@
         "x": 400,
         "y": 380,
         "wires": []
+    },
+    {
+        "id": "9a6b3453a86d0050",
+        "type": "firebase realtime database in",
+        "z": "a5f1e2921c16c7cd",
+        "name": "Consulta",
+        "ref": "registrosensor",
+        "dataAtStart": true,
+        "admin": "81a30fdf93ecbe1b",
+        "x": 180,
+        "y": 500,
+        "wires": [
+            [
+                "de368ff8980121c9"
+            ]
+        ]
+    },
+    {
+        "id": "de368ff8980121c9",
+        "type": "debug",
+        "z": "a5f1e2921c16c7cd",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "17bc524b52e517d8",
+        "type": "ui_switch",
+        "z": "d327d469936224b5",
+        "name": "",
+        "label": "On/Off",
+        "tooltip": "",
+        "group": "8595fad86834097e",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "Estado",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 90,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ab4275fe84e4cc24",
+        "type": "ui_gauge",
+        "z": "d327d469936224b5",
+        "name": "",
+        "group": "fe4d0132a6be9fa3",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Humedad",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 360,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "3b408616b2d8ac8a",
+        "type": "ui_chart",
+        "z": "d327d469936224b5",
+        "name": "",
+        "group": "6460dece15e7e3e1",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "Temperatura y humedad",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 370,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7397c1f94fb54be1",
+        "type": "ui_gauge",
+        "z": "d327d469936224b5",
+        "name": "",
+        "group": "fe4d0132a6be9fa3",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 330,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "0da7c6bab1770f5c",
+        "type": "inject",
+        "z": "d327d469936224b5",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "Temperatura",
+        "payload": "38",
+        "payloadType": "num",
+        "x": 100,
+        "y": 260,
+        "wires": [
+            [
+                "3b408616b2d8ac8a",
+                "7397c1f94fb54be1"
+            ]
+        ]
+    },
+    {
+        "id": "93eca12658deb7f9",
+        "type": "inject",
+        "z": "d327d469936224b5",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "Humedad",
+        "payload": "35",
+        "payloadType": "num",
+        "x": 90,
+        "y": 360,
+        "wires": [
+            [
+                "ab4275fe84e4cc24",
+                "3b408616b2d8ac8a"
+            ]
+        ]
     }
 ]
