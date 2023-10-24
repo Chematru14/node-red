@@ -24,6 +24,14 @@
         "env": []
     },
     {
+        "id": "ab8e94b61633d1bf",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "81a30fdf93ecbe1b",
         "type": "firebase admin",
         "name": "basedatarealtime"
@@ -186,6 +194,37 @@
         "width": "3",
         "collapse": false,
         "className": ""
+    },
+    {
+        "id": "92bb91e78db4946f",
+        "type": "mqtt-broker",
+        "name": "broker",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
     },
     {
         "id": "866927ccc66b0b61",
@@ -639,5 +678,86 @@
                 "3b408616b2d8ac8a"
             ]
         ]
+    },
+    {
+        "id": "c14cea9ebab97847",
+        "type": "inject",
+        "z": "ab8e94b61633d1bf",
+        "name": "Cicilo de simulación",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 200,
+        "wires": [
+            [
+                "d25a784490044c83"
+            ]
+        ]
+    },
+    {
+        "id": "d25a784490044c83",
+        "type": "random",
+        "z": "ab8e94b61633d1bf",
+        "name": "Simulacion sensor",
+        "low": 1,
+        "high": 10,
+        "inte": "true",
+        "property": "payload",
+        "x": 330,
+        "y": 200,
+        "wires": [
+            [
+                "1c7b286f814db75a",
+                "965130cff07bcfca"
+            ]
+        ]
+    },
+    {
+        "id": "1c7b286f814db75a",
+        "type": "mqtt out",
+        "z": "ab8e94b61633d1bf",
+        "name": "",
+        "topic": "UR/PVC/APP",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "92bb91e78db4946f",
+        "x": 540,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "965130cff07bcfca",
+        "type": "debug",
+        "z": "ab8e94b61633d1bf",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 260,
+        "wires": []
     }
 ]
